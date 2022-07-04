@@ -47,6 +47,10 @@ io.on('connection', (socket) => {
        console.log('createNewRoomHandler is going to be called');
         createNewRoomHandler(data, socket)
     });
+    
+    socket.on('join-room', (data) => {
+       joinRoomHandler(data, socket);
+    });
 });
 
 // socket.io handlers
@@ -80,10 +84,28 @@ createNewRoomHandler = (data, socket) => {
     
     // emit an event about new users to all users connected in this room
     socket.emit('room-update', { connectedUsers: newRoom.connectedUsers });
-    
-    
-    
 };
+
+joinRoomHandler = (data, socket) => {
+    const { identity, roomId } = data;
+    const newUser = {
+        identity,
+        id: uuidv4(),
+        socketId: socket.id,
+        roomId
+    }
+    // Join room
+    const room = rooms.find(room => room.id === roomId);
+    room.connectedUsers = [...room.connectedUsers, newUser];
+    
+     // join socket.io room
+     socket.join(roomId);
+     
+     // Add new user to connected users array
+     connectedUsers = [...connectedUsers, newUser];
+     
+     io.to(roomId).emit('room-update', { connectedUsers: room.connectedUsers });
+}
 
 
 server.listen(PORT, () => {

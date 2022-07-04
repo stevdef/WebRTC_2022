@@ -16,7 +16,7 @@ export const getLocalPreviewInitRoomConnection = async (
 ) => {
     navigator.mediaDevices
         .getUserMedia(defaultConstraints)
-        .then(stream => {
+        .then((stream) => {
             console.log('succesfully received local video stream')
             localStream = stream;
             showLocalVideoPreview(localStream);
@@ -26,7 +26,7 @@ export const getLocalPreviewInitRoomConnection = async (
             
             isRoomHost ? wss.createNewRoom(identity) : wss.joinRoom(identity, roomId);
             
-        }).catch(err => {
+        }).catch((err) => {
             console.log('error occured when trying to get an access to local stream');
             console.log(err);
         })
