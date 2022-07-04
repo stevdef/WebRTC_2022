@@ -9,7 +9,7 @@ import Overlay from './Overlay';
 import './RoomPage.css'
 
 
-const RoomPage = ({ roomId, identity, isRoomHost }) => {
+const RoomPage = ({ roomId, identity, isRoomHost, showOverlay }) => {
   
   useEffect(() => {
     webRTCHandler.getLocalPreviewInitRoomConnection(
@@ -25,7 +25,7 @@ const RoomPage = ({ roomId, identity, isRoomHost }) => {
         <VideoSection />
         <ChatSection />
         <RoomLabel roomId={roomId} />
-        <Overlay />
+        {showOverlay && <Overlay />}
     </div>
   );  
 };

@@ -1,3 +1,6 @@
+import { setShowOverlay } from '../store/actions';
+import store from '../store/store';
+
 const defaultConstraints = {
     audio: true,
     video: true
@@ -16,6 +19,10 @@ export const getLocalPreviewInitRoomConnection = async (
             console.log('succesfully received local video stream')
             localStream = stream;
             showLocalVideoPreview(localStream);
+            
+            // Dispatch an action to hide overlay
+            store.dispatch(setShowOverlay(false));
+            
             // isRoomHost ? wss.createNewRoom(identity) : wss.joinRoom(roomId, identity);
         }).catch(err => {
             console.log('error occured when trying to get an access to local stream');
