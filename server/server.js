@@ -16,7 +16,7 @@ let rooms = [];
 // Create route to check if room exists
 app.get('/api/room-exists/:roomId', (req, res) => {
     const { roomId } = req.params;
-    const room = rooms.find(room => room.id === roomId);
+    const room = rooms.find((room) => room.id === roomId);
     
     if (room) {
         
