@@ -27,6 +27,7 @@ export const connectWithSocketIOServer = () => {
 
 export const createNewRoom = (identity) => {
     // Emit an event to server that we would like to create a new room
+    console.log('createNewRoom called');
     const data = {
         identity
     };

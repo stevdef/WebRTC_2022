@@ -44,7 +44,8 @@ const io = require('socket.io')(server, {
 io.on('connection', (socket) => {
     console.log(`user connected ${socket.id}`)
     socket.on('create-new-room', (data) => {
-       createNewRoomHandler(data, socket)
+       console.log('createNewRoomHandler is going to be called');
+        createNewRoomHandler(data, socket)
     });
 });
 
