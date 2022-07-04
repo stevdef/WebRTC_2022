@@ -24,7 +24,7 @@ const reducer = (state = initState, action) => {
         case Actions.SET_ROOM_ID:
             return {
                 ...state,
-                roomId: action.roomIid
+                roomId: action.roomId
             };
         case Actions.SET_IDENTITY:
             return {

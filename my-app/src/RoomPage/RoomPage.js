@@ -17,7 +17,7 @@ const RoomPage = ({ roomId, identity, isRoomHost, showOverlay }) => {
       identity,
       roomId
     );
-  });
+  }, []);
   
   return (
     <div className='room_container'>
