@@ -32,7 +32,7 @@ const RoomPage = ({ roomId, identity, isRoomHost, showOverlay }) => {
 
 const mapStoreStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 
