@@ -9,10 +9,10 @@
 .pnp.js
 
 # testing
-/my-app//coverage
+/my-app/coverage
 
 # production
-/my-app//build
+/my-app/build
 
 # misc
 /my-app/.DS_Store
