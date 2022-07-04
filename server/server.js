@@ -41,51 +41,55 @@ const io = require('socket.io')(server, {
     }
 });
 
-io.on('connection', (socket) => {
-    console.log(`user connected ${socket.id}`)
-    
-    socket.on('create-new-room', (data) => {
-       console.log('createNewRoomHandler is going to be called');
-        createNewRoomHandler(data, socket)
+io.on("connection", (socket) => {
+    console.log(`user connected ${socket.id}`);
+  
+    socket.on("create-new-room", (data) => {
+      createNewRoomHandler(data, socket);
     });
-    
-    socket.on('join-room', (data) => {
-       joinRoomHandler(data, socket);
+  
+    socket.on("join-room", (data) => {
+      joinRoomHandler(data, socket);
     });
-});
+  });
 
 // socket.io handlers
 
 const createNewRoomHandler = (data, socket) => {
-    console.log('Host is creating new room');
+    console.log("host is creating new room");
     console.log(data);
     const { identity } = data;
+  
     const roomId = uuidv4();
-    // Create new user
+  
+    // create new user
     const newUser = {
-        identity,
-        id: uuidv4(),
-        socketId: socket.id,
-        roomId
+      identity,
+      id: uuidv4(),
+      socketId: socket.id,
+      roomId,
     };
-    // push user to connectedUsers
+  
+    // push that user to connectedUsers
     connectedUsers = [...connectedUsers, newUser];
-    // Create new room
+  
+    //create new room
     const newRoom = {
-        id: roomId,
-        connectedUsers: [newUser]
+      id: roomId,
+      connectedUsers: [newUser],
     };
     // join socket.io room
     socket.join(roomId);
-    
+  
     rooms = [...rooms, newRoom];
-    
-    // Emit roomId to client that created the room
-    socket.emit('room-id', { roomId });
-    
-    // emit an event about new users to all users connected in this room
-    socket.emit('room-update', { connectedUsers: newRoom.connectedUsers });
-};
+  
+    // emit to that client which created that room roomId
+    socket.emit("room-id", { roomId });
+  
+    // emit an event to all users connected
+    // to that room about new users which are right in this room
+    socket.emit("room-update", { connectedUsers: newRoom.connectedUsers });
+  };
 
 const joinRoomHandler = (data, socket) => {
     const { identity, roomId } = data;
