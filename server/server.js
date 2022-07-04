@@ -78,6 +78,7 @@ createNewRoomHandler = (data, socket) => {
     socket.emit('room-id', { roomId });
     
     // emit an event about new users to all users connected in this room
+    socket.emit('room-update', { connectedUsers: newRoom.connectedUsers });
     
     
     
