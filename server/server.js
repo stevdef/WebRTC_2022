@@ -43,6 +43,7 @@ const io = require('socket.io')(server, {
 
 io.on('connection', (socket) => {
     console.log(`user connected ${socket.id}`)
+    
     socket.on('create-new-room', (data) => {
        console.log('createNewRoomHandler is going to be called');
         createNewRoomHandler(data, socket)
@@ -55,7 +56,7 @@ io.on('connection', (socket) => {
 
 // socket.io handlers
 
-createNewRoomHandler = (data, socket) => {
+const createNewRoomHandler = (data, socket) => {
     console.log('Host is creating new room');
     console.log(data);
     const { identity } = data;
@@ -86,7 +87,7 @@ createNewRoomHandler = (data, socket) => {
     socket.emit('room-update', { connectedUsers: newRoom.connectedUsers });
 };
 
-joinRoomHandler = (data, socket) => {
+const joinRoomHandler = (data, socket) => {
     const { identity, roomId } = data;
     const newUser = {
         identity,
