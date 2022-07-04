@@ -5,7 +5,9 @@ import ParticipantsSection from './ParticipantsSection/ParticipantsSection';
 import VideoSection from './VideoSection/VideoSection';
 import RoomLabel from './RoomLabel';
 import * as webRTCHandler from '../utils/webRTCHandler'
+import Overlay from './Overlay';
 import './RoomPage.css'
+
 
 const RoomPage = ({ roomId, identity, isRoomHost }) => {
   
@@ -15,7 +17,7 @@ const RoomPage = ({ roomId, identity, isRoomHost }) => {
       identity,
       roomId
     );
-  }, []);
+  });
   
   return (
     <div className='room_container'>
@@ -23,6 +25,7 @@ const RoomPage = ({ roomId, identity, isRoomHost }) => {
         <VideoSection />
         <ChatSection />
         <RoomLabel roomId={roomId} />
+        <Overlay />
     </div>
   );  
 };
