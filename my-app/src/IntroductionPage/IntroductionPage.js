@@ -11,7 +11,7 @@ const IntroductionPage = ( { setIsRoomHostAction }) => {
   
   useEffect(() => {
     setIsRoomHostAction(false);
-  });
+  }, []);
   
   return (
     <div className="introduction_page_container">

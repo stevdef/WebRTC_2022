@@ -17,7 +17,7 @@ const SingleParticipant = (props) => {
     </>;
 };
 
-const Participants = ({participants}) => {
+const Participants = ({ participants }) => {
     
     return (
         <div className="participants_container">
@@ -26,8 +26,8 @@ const Participants = ({participants}) => {
                     <SingleParticipant 
                         key={participant.identity}
                         lastItem={participants.length === index + 1}
-                        participant={participant}
-                        identity={participant.identity}
+                        participant={ participant }
+                        identity={ participant.identity }
                     />
                 )
             })}
@@ -41,4 +41,4 @@ const mapStoreStateToProps = (state) => {
     };
 };
 
-export default connect(mapStoreStateToProps)(Participants);
+export default connect(mapStoreStateToProps) (Participants);

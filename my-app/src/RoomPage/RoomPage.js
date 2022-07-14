@@ -36,4 +36,4 @@ const mapStoreStateToProps = (state) => {
   };
 };
 
-export default connect(mapStoreStateToProps)(RoomPage);
+export default connect(mapStoreStateToProps) (RoomPage);
